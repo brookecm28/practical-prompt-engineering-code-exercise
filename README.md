@@ -5,3 +5,6 @@ This is a companion repository for the [Practical Prompt Engineering](https://fr
 ### About this Repo
 
 This repo contains the final code for the **Prompt Library** application build in the course. The `reference-project` branch is the application demonstrated at the beginning of the course. The commits on the `main` branch are the progress checks while for the application build during the course.
+
+### Also See
+[Sabrina Goldfarb's Course](https://sgoldfarb2.github.io/practical-prompt-engineering/) which includes notes and prompts for easy copying.
