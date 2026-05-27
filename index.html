@@ -1,75 +1,48 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Prompt Library</title>
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <header class="app-header">
-    <h1>Prompt Library</h1>
-    <div class="header-tools" role="region" aria-label="Data tools">
-      <button type="button" id="export-btn" class="tool-btn" aria-label="Export prompts">Export</button>
-      <button type="button" id="import-btn" class="tool-btn" aria-label="Import prompts">Import</button>
-      <input type="file" id="import-file" accept="application/json" hidden aria-hidden="true" />
-    </div>
-  </header>
-
-  <main class="layout">
-    <section class="panel" aria-labelledby="form-heading">
-      <h2 id="form-heading" class="panel-title">Add Prompt</h2>
-      <form id="prompt-form" novalidate>
-        <div class="field-group">
-          <label for="prompt-title">Title</label>
-          <input type="text" id="prompt-title" name="title" placeholder="e.g. Blog Idea Generator" maxlength="120" required />
-          <p class="field-hint" id="title-hint">Required. Max 120 characters.</p>
-        </div>
-        <div class="field-group">
-          <label for="model-name">Model</label>
-          <input type="text" id="model-name" name="model" placeholder="e.g. gpt-4o-mini" maxlength="100" required />
-          <p class="field-hint" id="model-hint">Required. Model identifier (max 100 chars).</p>
-        </div>
-        <div class="field-group">
-          <label for="prompt-content">Content</label>
-          <textarea id="prompt-content" name="content" placeholder="Enter the full prompt here..." rows="6" required></textarea>
-          <p class="field-hint" id="content-hint">Required.</p>
-        </div>
-        <div class="actions">
-          <button type="submit" id="save-btn">Save Prompt</button>
-        </div>
-        <div id="form-error" class="form-error" role="alert" aria-live="polite"></div>
-      </form>
-    </section>
-
-    <section class="panel" aria-labelledby="saved-prompts-heading">
-      <div class="panel-header">
-        <h2 id="saved-prompts-heading" class="panel-title">Saved Prompts</h2>
-        <span id="prompt-count" class="count-badge" aria-live="polite"></span>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prompt Library</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <h1 class="logo">Prompt Library</h1>
+      <p class="tagline">Save and manage your prompts — stored locally</p>
+      <div class="header-actions">
+        <button id="export-btn" class="btn">Export Prompts</button>
+        <label class="btn" for="import-file" style="cursor:pointer;margin-left:8px">Import Prompts</label>
+        <input id="import-file" type="file" accept="application/json" style="display:none" />
       </div>
-      <div id="import-export-messages" class="iemessages" role="alert" aria-live="polite" hidden></div>
-      <div id="prompts-empty" class="empty-state" hidden>
-        <p>No prompts saved yet. Add your first one!</p>
-      </div>
-      <div id="prompts-list" class="cards" aria-live="polite"></div>
-    </section>
-  </main>
+    </header>
 
-  <template id="prompt-card-template">
-    <article class="card" data-id="">
-      <div class="card-main">
-        <h3 class="card-title"></h3>
-        <p class="card-preview"></p>
-        <div class="prompt-meta" data-role="metadata"></div>
-      </div>
-      <div class="card-actions">
-        <button class="delete-btn" type="button" aria-label="Delete prompt">Delete</button>
-      </div>
-    </article>
-  </template>
+    <main class="container">
+      <section class="form-panel">
+        <form id="prompt-form">
+          <label for="title">Title</label>
+          <input id="title" name="title" type="text" placeholder="Short descriptive title" required />
 
-  <footer class="app-footer">Local-only storage. Clearing browser data will remove prompts.</footer>
+          <label for="model">Model</label>
+          <input id="model" name="model" type="text" placeholder="e.g. gpt-4o" maxlength="100" required />
 
-  <script src="script.js"></script>
-</body>
+          <label class="checkbox-inline"><input id="isCode" name="isCode" type="checkbox" /> Is this prompt code?</label>
+
+          <label for="content">Prompt</label>
+          <textarea id="content" name="content" rows="6" placeholder="Write your prompt here" required></textarea>
+
+          <div class="form-actions">
+            <button type="submit" class="btn save">Save Prompt</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="prompts-panel">
+        <h2>Saved Prompts</h2>
+        <div id="prompts-container" class="prompts-grid" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
 </html>
